@@ -48,7 +48,7 @@ SharedPreferences.Editor editor ;
         due=findViewById(R.id.due);
         add_task=findViewById(R.id.add_task);
         task_name=findViewById(R.id.name);
-        calendarView=findViewById(R.id.calendarView);
+         calendarView=findViewById(R.id.calendarView);
 
        adapter = new ArrayAdapter<>(this,  android.R.layout.simple_list_item_1, stringList);
         tasks.setAdapter(adapter);
