@@ -55,7 +55,7 @@ SharedPreferences.Editor editor ;
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                 selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
+                  selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
 
             }
         });
