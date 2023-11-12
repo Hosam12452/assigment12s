@@ -7,14 +7,14 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="select task to show status"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toTopOf="@+id/tasks_ui"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.767" />
@@ -23,25 +23,25 @@
         android:id="@+id/tasks_ui"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/textview"
+        app:layout_constraintBottom_toTopOf="@+id/done"
+        app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/done"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:text="done"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/due"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.315" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/due"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginEnd="56dp"
@@ -52,21 +52,21 @@
         app:layout_constraintVertical_bias="0.315" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/name"
         android:layout_width="116dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="task name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/add_task"
         app:layout_constraintEnd_toStartOf="@+id/calendarView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/done"
         app:layout_constraintVertical_bias="0.386" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/add_task"
         android:layout_width="322dp"
         android:layout_height="56dp"
         android:text="Add task"
