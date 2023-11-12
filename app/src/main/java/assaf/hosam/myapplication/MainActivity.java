@@ -42,7 +42,7 @@ SharedPreferences.Editor editor ;
 
         setContentView(R.layout.activity_main);
  preferences = getSharedPreferences("DATA", MODE_PRIVATE);
- editor = preferences.edit();
+         editor = preferences.edit();
         tasks=findViewById(R.id.tasks_ui);
         done=findViewById(R.id.done);
         due=findViewById(R.id.due);
