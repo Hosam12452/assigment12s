@@ -3,10 +3,12 @@ package assaf.hosam.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -26,7 +28,7 @@ Button done,due,add_task;
 EditText task_name;
 String selectedDate;
 CalendarView calendarView;
-int counter =0;
+int counter;
     ArrayAdapter<String> adapter;
     ArrayList<String> stringList = new ArrayList<>();
 
@@ -38,14 +40,18 @@ SharedPreferences.Editor editor ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
  preferences = getSharedPreferences("DATA", MODE_PRIVATE);
+
          editor = preferences.edit();
+         counter=preferences.getInt("counter",0);
         tasks=findViewById(R.id.tasks_ui);
-        done=findViewById(R.id.done);
-        due=findViewById(R.id.due);
+//        done=findViewById(R.id.done);
+//        due=findViewById(R.id.due);
         add_task=findViewById(R.id.add_task);
         task_name=findViewById(R.id.name);
          calendarView=findViewById(R.id.calendarView);
@@ -73,7 +79,18 @@ SharedPreferences.Editor editor ;
              add_click();
             }
         });
+        tasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("selectedItem",position+1);
+                startActivity(intent);
+
+//                Toast.makeText(MainActivity.this, "Clicked: " + (position+1), Toast.LENGTH_SHORT).show();
+            }
+        });
+        rebuild_listview();
     }
     public void add_click(){
         String name=task_name.getText().toString();
@@ -84,15 +101,29 @@ SharedPreferences.Editor editor ;
         }
         else{
             counter+=1;
+
          Task newTask=new Task(selectedDate,name,counter,"due");
             Toast.makeText(this, newTask.getDeadLine(), Toast.LENGTH_SHORT).show();
             String task= gson.toJson(newTask);
+            editor.putInt("counter",counter);
             editor.putString(counter+"",task);
             editor.commit();
             stringList.add(newTask.getTaskId()+"-"+newTask.getTaskName()+"  "+newTask.getStatus()+"  "+newTask.getDeadLine());
             adapter.notifyDataSetChanged();
+//            String test1=preferences.getString(1+"",0+"");
+//            Toast.makeText(this, test1, Toast.LENGTH_SHORT).show();
 
         }
 
+        }
+        public void rebuild_listview(){
+        int test1=preferences.getInt("counter",0);
+            for(int i=1;i<=test1;i++){
+                String objctjson=preferences.getString(i+"",null);
+                Task newTask=gson.fromJson(objctjson,Task.class);
+                stringList.add(newTask.getTaskId()+"-"+newTask.getTaskName()+"  "+newTask.getStatus()+"  "+newTask.getDeadLine());
+                adapter.notifyDataSetChanged();
+
+            }
         }
     }
