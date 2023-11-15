@@ -50,8 +50,6 @@ SharedPreferences.Editor editor ;
          editor = preferences.edit();
          counter=preferences.getInt("counter",0);
         tasks=findViewById(R.id.tasks_ui);
-//        done=findViewById(R.id.done);
-//        due=findViewById(R.id.due);
         add_task=findViewById(R.id.add_task);
         task_name=findViewById(R.id.name);
          calendarView=findViewById(R.id.calendarView);
@@ -87,7 +85,6 @@ SharedPreferences.Editor editor ;
                 intent.putExtra("selectedItem",position+1);
                 startActivity(intent);
 
-//                Toast.makeText(MainActivity.this, "Clicked: " + (position+1), Toast.LENGTH_SHORT).show();
             }
         });
         rebuild_listview();
@@ -110,8 +107,7 @@ SharedPreferences.Editor editor ;
             editor.commit();
             stringList.add(newTask.getTaskId()+"-"+newTask.getTaskName()+"  "+newTask.getStatus()+"  "+newTask.getDeadLine());
             adapter.notifyDataSetChanged();
-//            String test1=preferences.getString(1+"",0+"");
-//            Toast.makeText(this, test1, Toast.LENGTH_SHORT).show();
+
 
         }
 
