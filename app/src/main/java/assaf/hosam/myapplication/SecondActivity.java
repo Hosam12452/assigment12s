@@ -70,7 +70,11 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 public void savechanges(){
-        if(status.getText().equals("")||taskname.getText().equals("")||taskdate.getText().equals("")){
+    String n= taskname.getText().toString().trim();
+    String s=status.getText().toString().trim();
+    String d=taskdate.getText().toString().trim();
+
+    if(s.isEmpty()||n.isEmpty()||d.isEmpty()){
             Toast.makeText(this, "please fill the blocks", Toast.LENGTH_SHORT).show();
         }else{
 
